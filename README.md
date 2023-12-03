@@ -31,7 +31,7 @@ The action uses the GraphQL API to call the Status Checks API. It grabs the stat
       runs-on: ubuntu-latest
       if: ${{ github.event_name == 'pull_request' }}
       steps:
-      - name: Check Code Scanning Status
+      - name: Check CodeQL Status
         uses: eldrick19/codeql-status-checker@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -94,7 +94,7 @@ The action uses the GraphQL API to call the Status Checks API. It grabs the stat
       runs-on: ubuntu-latest
       if: ${{ github.event_name == 'pull_request' }}
       steps:
-      - name: Check Code Scanning Status
+      - name: Check CodeQL Status
         uses: eldrick19/codeql-status-checker@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
