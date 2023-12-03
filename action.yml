@@ -1,0 +1,22 @@
+name: 'Check CodeQL Status'
+description: 'Check the status of CodeQL analysis'
+inputs:
+  token:
+    description: 'GitHub token'
+    required: true
+  pr_number:
+    description: 'Pull request number'
+    required: true
+  org:
+    description: 'Organization'
+    required: true
+  repo:
+    description: 'Repository'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - run: chmod +x ${{ github.action_path }}/run.sh
+      shell: bash
+    - run: ${{ github.action_path }}/run.sh "${{ inputs.token }}" "${{ inputs.pr_number }}" "${{ inputs.org }}" "${{ inputs.repo }}"
+      shell: bash
