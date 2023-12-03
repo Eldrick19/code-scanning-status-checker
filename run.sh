@@ -5,8 +5,9 @@ TOKEN=$1
 PR_NUMBER=$2
 ORG_REPO=$3
 
-ORG=${ORG_REPO%%/*}
-REPO=${ORG_REPO#*/}
+IFS='/' read -ra SPLIT_REPO <<< "$ORG_REPO"
+ORG=${SPLIT_REPO[0]}
+REPO=${SPLIT_REPO[1]}
 
 gh auth login --with-token <<< "$TOKEN"
 
@@ -41,9 +42,6 @@ get_codeql_conclusion() {
 }
 
 conclusion=$(get_codeql_conclusion)
-# Output ORG and REPO to the logs
-echo "ORG: $ORG"
-echo "REPO: $REPO"
 if [ "$conclusion" != "SUCCESS" ]; then
   echo "CodeQL check failed"
   exit 1
