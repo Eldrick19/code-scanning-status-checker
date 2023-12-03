@@ -7,9 +7,6 @@ inputs:
   pr_number:
     description: 'Pull request number'
     required: true
-  org:
-    description: 'Organization'
-    required: true
   repo:
     description: 'Repository'
     required: true
