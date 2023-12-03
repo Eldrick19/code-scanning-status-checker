@@ -1,11 +1,11 @@
 # CodeQL Status Checker
 
-The Actions is meant to help you if you're using both GitHub Merge Queue and GitHub Advanced Security. It is a workaround to functionality that will be native to GitHub
+The Actions is meant to help you if you're using both GitHub Merge Queue and GitHub Advanced Security. It is a workaround to functionality that will be native to GitHub at some point.
 
 At the time of creation of this Action, the ability to do **all** of the following is **not** possible:
-1. Have Merge Queue on a repo
+1. Have Merge Queue turned on in a repo
 2. Have Code Scanning from GitHub Advanced Security activated on a repo
-3. Enforce Code Scanning's CodeQL as a required status check for pull requests.
+3. Enforce Code Scanning's CodeQL as a [required status check](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/about-status-checks) for pull requests.
 
 This is a very simple Action that will act as a substitute required status check for Code Scanning once you have merge queue enabled. It will force Code Scanning to pass at the Pull Request and allow you to skip it in your repo's merge group.
 
@@ -103,5 +103,6 @@ The action uses the GraphQL API to call the Status Checks API. It grabs the stat
   ````
   </details>
 
-2. Once added, instead of making your "CodeQL" job required, make the "Force Code Scanning Check" job mandatory
-3. Now, this job will check if Code Scanning
+2. Make the "Force CodeQL Check" job required in your branch protection settings. Your Advanced Security required status checks should look like:
+   <img width="752" alt="Capture d’écran, le 2023-12-03 à 00 46 05" src="https://github.com/Eldrick19/codeql-status-checker/assets/26189114/a89cdecf-1ca8-49c0-abd6-33157e8f910e">
+4. If "CodeQL" was previously a required check, do not require it anymore
