@@ -8,6 +8,9 @@ REPO=$3
 IFS='/' read -ra SPLIT_REPO <<< "$REPO"
 ORG=${SPLIT_REPO[0]}
 REPO=${SPLIT_REPO[1]}
+# Print the org and repo
+echo $ORG
+echo $REPO
 
 gh auth login --with-token <<< "$TOKEN"
 
