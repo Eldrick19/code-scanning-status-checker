@@ -3,14 +3,15 @@ set -e
 
 TOKEN=$1
 PR_NUMBER=$2
-REPO=$3
+ORG_REPO=$3
 
-IFS='/' read -ra SPLIT_REPO <<< "$REPO"
+IFS='/' read -ra SPLIT_REPO <<< "$ORG_REPO"
 ORG=${SPLIT_REPO[0]}
 REPO=${SPLIT_REPO[1]}
-# Print the org and repo
-echo $ORG
-echo $REPO
+
+# Output ORG and REPO to the logs
+echo "ORG: $ORG"
+echo "REPO: $REPO"
 
 gh auth login --with-token <<< "$TOKEN"
 
