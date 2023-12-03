@@ -3,15 +3,12 @@ description: 'Check the status of CodeQL analysis'
 inputs:
   token:
     description: 'GitHub token'
-    default: ${{ github.token }}
     required: true
   pr_number:
     description: 'Pull request number'
-    default: ${{ github.event.pull_request.number }}
     required: true
   repo:
     description: 'Repository'
-    default: ${{ github.repository }}
     required: true
 runs:
   using: 'composite'
