@@ -9,6 +9,8 @@ At the time of creation of this Action, the ability to do **all** of the followi
 
 This is a very simple Action that will act as a substitute required status check for Code Scanning once you have merge queue enabled. It will force Code Scanning to pass at the Pull Request and allow you to skip it in your repo's merge group.
 
+**Note:** Today this is configured to work only with the CodeQL engine that comes with GitHub Advanced Security.
+
 ## Why?
 
 If you want more details as to why this workaround exists see [here](). 
