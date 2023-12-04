@@ -21,7 +21,7 @@ The action uses the GraphQL API to call the Status Checks API. It grabs the stat
 1. Add it in a separate job to your workflow:
 
   ````yaml
-  check_codeql_status:
+  check_code_scanning_status:
       name: Force CodeQL Status Check
       needs: <your code scanning job>
       permissions: 
@@ -32,7 +32,7 @@ The action uses the GraphQL API to call the Status Checks API. It grabs the stat
       if: ${{ github.event_name == 'pull_request' }}
       steps:
       - name: Check CodeQL Status
-        uses: eldrick19/codeql-status-checker@v1
+        uses: eldrick19/code-scanning-status-checker@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           pr_number: ${{ github.event.pull_request.number }}
@@ -84,7 +84,7 @@ The action uses the GraphQL API to call the Status Checks API. It grabs the stat
         with:
           category: "/language:${{matrix.language}}"
   
-     check_codeql_status:
+     check_code_scanning_status:
       name: Force CodeQL Status Check
       needs: analyze
       permissions: 
@@ -95,7 +95,7 @@ The action uses the GraphQL API to call the Status Checks API. It grabs the stat
       if: ${{ github.event_name == 'pull_request' }}
       steps:
       - name: Check CodeQL Status
-        uses: eldrick19/codeql-status-checker@v1
+        uses: eldrick19/code-scanning-status-checker@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           pr_number: ${{ github.event.pull_request.number }}
