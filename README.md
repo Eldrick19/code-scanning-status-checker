@@ -1,4 +1,4 @@
-# CodeQL Status Checker
+# Code Scanning Status Checker
 
 The Actions is meant to help you if you're using both GitHub Merge Queue and GitHub Advanced Security. It is a workaround to functionality that will be native to GitHub at some point.
 
