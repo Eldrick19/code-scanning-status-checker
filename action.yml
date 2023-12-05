@@ -1,6 +1,8 @@
 name: 'Check Code Scanning Status'
 description: 'Check the status of Code Scanning analysis'
-icon: 'alert-triangle'
+branding:
+  icon: "alert-triangle"
+  color: "red"
 inputs:
   token:
     description: 'GitHub token'
