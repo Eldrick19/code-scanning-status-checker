@@ -23,22 +23,22 @@ The action uses the GraphQL API to call the Status Checks API. It grabs the stat
 1. Add it in a separate job to your workflow:
 
   ````yaml
-  check_code_scanning_status:
-      name: Force CodeQL Status Check
-      needs: <your code scanning job>
-      permissions: 
-        contents: read
-        checks: read
-        pull-requests: read
-      runs-on: ubuntu-latest
-      if: ${{ github.event_name == 'pull_request' }}
-      steps:
-      - name: Check CodeQL Status
-        uses: eldrick19/code-scanning-status-checker@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          pr_number: ${{ github.event.pull_request.number }}
-          repo: ${{ github.repository }}
+  check_codeql_status:
+    name: Check CodeQL Status
+    needs: analyze
+    permissions: 
+      contents: read
+      checks: read
+      pull-requests: read
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' }}
+    steps:
+    - name: Check CodeQL Status
+      uses: eldrick19/code-scanning-status-checker@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        pr_number: ${{ github.event.pull_request.number }}
+        repo: ${{ github.repository }}
   ````
 
   <details>
@@ -86,25 +86,27 @@ The action uses the GraphQL API to call the Status Checks API. It grabs the stat
         with:
           category: "/language:${{matrix.language}}"
   
-     check_code_scanning_status:
-      name: Force CodeQL Status Check
-      needs: analyze
-      permissions: 
-        contents: read
-        checks: read
-        pull-requests: read
-      runs-on: ubuntu-latest
-      if: ${{ github.event_name == 'pull_request' }}
-      steps:
-      - name: Check CodeQL Status
-        uses: eldrick19/code-scanning-status-checker@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          pr_number: ${{ github.event.pull_request.number }}
-          repo: ${{ github.repository }}
+     check_codeql_status:
+        name: Check CodeQL Status
+        needs: analyze
+        permissions: 
+          contents: read
+          checks: read
+          pull-requests: read
+        runs-on: ubuntu-latest
+        if: ${{ github.event_name == 'pull_request' }}
+        steps:
+        - name: Check CodeQL Status
+          uses: eldrick19/code-scanning-status-checker@v1
+          with:
+            token: ${{ secrets.GITHUB_TOKEN }}
+            pr_number: ${{ github.event.pull_request.number }}
+            repo: ${{ github.repository }}
   ````
   </details>
 
 2. Make the "Force CodeQL Check" job required in your branch protection settings. Your Advanced Security required status checks should look like:
-   <img width="752" alt="Capture d’écran, le 2023-12-03 à 00 46 05" src="https://github.com/Eldrick19/codeql-status-checker/assets/26189114/a89cdecf-1ca8-49c0-abd6-33157e8f910e">
-4. If "CodeQL" was previously a required check, do not require it anymore
+
+    <img width="752" alt="Capture d’écran, le 2023-12-04 à 21 36 01" src="https://github.com/Eldrick19/code-scanning-status-checker/assets/26189114/06337b7a-1178-49a9-9990-fbd024f8a4e4">
+
+3. If "CodeQL" was previously a required check, do not require it anymore
