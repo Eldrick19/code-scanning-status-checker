@@ -1,4 +1,5 @@
 #!/bin/bash
+source functions.sh
 set -e
 trap 'echo "An error occurred. Exiting." >&2' ERR
 
@@ -12,41 +13,12 @@ REPO=${SPLIT_REPO[1]}
 
 gh auth login --with-token <<< "$TOKEN"
 
-get_codeql_conclusion() {
-  local response
-  response=$(gh api graphql -f query='
-    {
-        repository(owner: "'$ORG'", name: "'$REPO'") {
-        pullRequest(number: '$PR_NUMBER') {
-          commits(last: 1) {
-            nodes {
-              commit {
-                checkSuites(first: 1, filterBy: {checkName: "CodeQL"}) {
-                  nodes {
-                    checkRuns(first: 1) {
-                      nodes {
-                        name
-                        status
-                        conclusion
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  ')
-  echo $response | jq -r '.data.repository.pullRequest.commits.nodes[0].commit.checkSuites.nodes[0].checkRuns.nodes[0].conclusion'
-}
-
 declare -r JOB_SKIPPED=78
 declare -r JOB_FAILED=1
 declare -r JOB_SUCCESS=0
 
-conclusion=$(get_codeql_conclusion)
+response=$(get_codeql_api_response)
+conclusion=$(get_codeql_conclusion "$response")
 exit_status=$JOB_SUCCESS
 
 if [ "$conclusion" == "SUCCESS" ]; then
