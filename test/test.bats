@@ -1,5 +1,5 @@
 #!/usr/bin/env bats
-source ./functions.sh
+source ./src/functions.sh
 
 @test "get_codeql_conclusion with neutral.json" {
     # Read the contents of neutral.json
