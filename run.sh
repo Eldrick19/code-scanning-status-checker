@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+trap 'echo "An error occurred. Exiting." >&2' ERR
 
 TOKEN=$1
 PR_NUMBER=$2
@@ -41,8 +42,21 @@ get_codeql_conclusion() {
   echo $response | jq -r '.data.repository.pullRequest.commits.nodes[0].commit.checkSuites.nodes[0].checkRuns.nodes[0].conclusion'
 }
 
+declare -r JOB_SKIPPED=78
+declare -r JOB_FAILED=1
+declare -r JOB_SUCCESS=0
+
 conclusion=$(get_codeql_conclusion)
-if [ "$conclusion" != "SUCCESS" ]; then
+exit_status=$JOB_SUCCESS
+
+if [ "$conclusion" == "SUCCESS" ]; then
+  echo "CodeQL check succeeded"
+elif [ "$conclusion" == "FAILURE" ]; then
   echo "CodeQL check failed"
-  exit 1
+  exit_status=$JOB_FAILED
+else
+  echo "Unexpected CodeQL conclusion received: $conclusion. Please check the CodeQL job for more details. Skipping job."
+  exit_status=$JOB_SKIPPED
 fi
+
+exit $exit_status
