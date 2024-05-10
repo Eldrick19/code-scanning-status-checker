@@ -1,9 +1,6 @@
 name: Run Bats Tests
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
@@ -23,7 +20,7 @@ jobs:
 
     - name: Install Bats
       run: |
-        npm install -g bats
+        npm install --save-dev bats 
 
     - name: Run Bats tests
       run: bats tests/test.bats
