@@ -110,3 +110,15 @@ The action uses the GraphQL API to call the Status Checks API. It grabs the stat
     <img width="752" alt="Capture d’écran, le 2023-12-04 à 21 36 01" src="https://github.com/Eldrick19/code-scanning-status-checker/assets/26189114/06337b7a-1178-49a9-9990-fbd024f8a4e4">
 
 3. If "CodeQL" was previously a required check, do not require it anymore
+
+## How to test?
+
+Install the necessary dependencies by running the following command in your project directory:
+  ```
+  npm install
+  ```
+
+Run the tests by executing the following command:
+  ```
+  npm test
+  ```
