@@ -42,7 +42,13 @@ get_codeql_conclusion() {
 }
 
 conclusion=$(get_codeql_conclusion)
-if [ "$conclusion" != "SUCCESS" ]; then
+if [ "$conclusion" == "SUCCESS" ]; then
+  echo "CodeQL check succeeded"
+  exit 0
+elif [ "$conclusion" == "FAILURE" ]; then
   echo "CodeQL check failed"
   exit 1
+else
+  echo "CodeQL check conclusion is neither SUCCESS nor FAILURE. Skipping job."
+  exit 78
 fi
