@@ -26,4 +26,4 @@ jobs:
         npm install -g bats
 
     - name: Run Bats tests
-      run: bats test.bats
+      run: bats tests/*.bats
