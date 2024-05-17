@@ -1,0 +1,14 @@
+{
+  "name": "Code Scanning Status Checker Dev Container",
+  "image": "mcr.microsoft.com/vscode/devcontainers/base:0-buster",
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/zsh"
+  },
+  "extensions": [
+    "github.copilot",
+    "github.copilot-chat"
+  ],
+  "forwardPorts": [],
+  "postCreateCommand": "npm install",
+  "remoteUser": "vscode"
+}
