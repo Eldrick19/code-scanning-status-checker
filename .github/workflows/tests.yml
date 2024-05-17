@@ -16,7 +16,7 @@ jobs:
     - name: Set up Bats
       uses: actions/setup-node@v2
       with:
-        node-version: '14'
+        node-version: '16'
 
     - name: Install Bats
       run: |
@@ -24,4 +24,4 @@ jobs:
         npm install --save-dev bats 
 
     - name: Run Bats tests
-      run: bats tests/test.bats
+      run: npm run test
