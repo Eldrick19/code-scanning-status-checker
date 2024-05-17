@@ -1,8 +1,9 @@
-#!/bin/bash
-chmod +x functions.sh
-source functions.sh
-set -e
-trap 'echo "An error occurred. Exiting." >&2' ERR
+ #!/bin/bash
+ SCRIPT_DIR="$(dirname "$0")"
+ chmod +x "$SCRIPT_DIR/functions.sh"
+ source "$SCRIPT_DIR/functions.sh"
+ set -e
+ trap 'echo "An error occurred. Exiting." >&2' ERR
 
 TOKEN=$1
 PR_NUMBER=$2
