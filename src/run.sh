@@ -1,4 +1,5 @@
 #!/bin/bash
+chmod +x functions.sh
 source functions.sh
 set -e
 trap 'echo "An error occurred. Exiting." >&2' ERR
