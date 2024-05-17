@@ -18,5 +18,5 @@ runs:
   steps:
     - run: chmod +x ${{ github.action_path }}/src/run.sh
       shell: bash
-    - run: ${{ github.action_path }}src/run.sh "${{ inputs.token }}" "${{ inputs.pr_number }}" "${{ inputs.repo }}"
+    - run: ${{ github.action_path }}/src/run.sh "${{ inputs.token }}" "${{ inputs.pr_number }}" "${{ inputs.repo }}"
       shell: bash
