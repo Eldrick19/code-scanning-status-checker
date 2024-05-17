@@ -16,9 +16,10 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    # Set execute permissions recursively for all files in the 'src' directory.
     - run: chmod -R +x ${{ github.action_path }}/src
-
-      # Set execute permissions recursively for all files in the 'src' directory.
+      shell: bash
+    - run: ls -la ${{ github.action_path }}/src
       shell: bash
     - run: ${{ github.action_path }}/src/run.sh "${{ inputs.token }}" "${{ inputs.pr_number }}" "${{ inputs.repo }}"
       shell: bash
