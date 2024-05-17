@@ -1,0 +1,16 @@
+{
+  "devDependencies": {
+    "bats": "^1.11.0"
+  },
+  "name": "code-scanning-status-checker",
+  "description": "The Actions is meant to help you if you're using both GitHub Merge Queue and GitHub Advanced Security. It is a workaround to functionality that will be native to GitHub at some point.",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "bats test/*.bats"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT"
+}

@@ -1,0 +1,27 @@
+name: Run Bats Tests
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Set up Bats
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+
+    - name: Install Bats
+      run: |
+        npm install -g bats
+        npm install --save-dev bats 
+
+    - name: Run Bats tests
+      run: npm run test
